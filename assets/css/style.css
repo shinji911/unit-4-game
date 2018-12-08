@@ -1,0 +1,27 @@
+body {
+    background: black;
+}
+
+#mainscreen {
+    height: 720px;
+    background: url(../images/background.jpg) no-repeat center;
+}
+
+.servant {
+    background: white;
+    border: solid red 3px;
+}
+
+.svtimg {
+    height: 120px;
+    width: 140px;
+}
+
+p {
+    color: black;
+    font-size: 12px;
+}
+
+.svtzone {
+    height: 160px;
+}
