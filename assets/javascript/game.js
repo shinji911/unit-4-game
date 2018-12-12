@@ -18,7 +18,6 @@ $(document).ready(function () {
 
     //grab elements and store in variables
     let mainscreen = $("#mainscreen");
-    let yoursvtzone = $("#yoursvtzone");
     let enemysvtzone = $("#enemysvtzone");
     let defendsvtzone = $("#defendsvtzone");
     let atkbtn = $("#atkbtn");
@@ -37,29 +36,29 @@ $(document).ready(function () {
     let archerobj = {
         name: "Tomoe Gozen",
         hp: 100,
-        atkpower: 10,
-        ctrpower: 25
+        atkpower: 8,
+        ctrpower: 22
     };
 
     let casterobj = {
         name: "Gilles de Rais",
-        hp: 100,
-        atkpower: 10,
-        ctrpower: 25
+        hp: 75,
+        atkpower: 13,
+        ctrpower: 24
     };
 
     let lancerobj = {
         name: "Karna",
-        hp: 100,
-        atkpower: 10,
-        ctrpower: 25
+        hp: 120,
+        atkpower: 7,
+        ctrpower: 14
     };
 
     let riderobj = {
         name: "Alexander",
-        hp: 100,
-        atkpower: 10,
-        ctrpower: 25
+        hp: 140,
+        atkpower: 6,
+        ctrpower: 11
     };
 
     //set game function
@@ -72,6 +71,8 @@ $(document).ready(function () {
     updatehp(casterhp, casterobj.hp);
     updatehp(lancerhp, lancerobj.hp);
     updatehp(riderhp, riderobj.hp);
+
+    sysmessage.text("Select Your Character")
 
     //function to move character divs when player char is chosen
     function movetoDef(inarray) {
@@ -116,6 +117,7 @@ $(document).ready(function () {
                         break;
                 }
                 yourselect = true;
+                sysmessage.text("Select Target Enemy")
             }
 
             //if player has chosen a character and fight enemy is not chosen, run.
@@ -153,7 +155,7 @@ $(document).ready(function () {
     atkbtn.on("click", function () {
         if (gameover === false) {
             if (yourselect === false) {
-                sysmessage.text("Select Your Servant First");
+                sysmessage.text("Select Your Character First");
             }
 
             else if (enemyselect === false) {
@@ -162,6 +164,7 @@ $(document).ready(function () {
 
             else {
                 currentatkpwr = currentatkpwr + yourobj.atkpower;
+                console.log(currentatkpwr);
                 enemyobj.hp = enemyobj.hp - currentatkpwr;
                 updatehp(enemyhpdiv, enemyobj.hp);
                 sysmessage.text("You have attacked the enemy for " + currentatkpwr + " damage.");
@@ -185,6 +188,7 @@ $(document).ready(function () {
                 else {
                     yourobj.hp = yourobj.hp - enemyobj.ctrpower;
                     updatehp(yourhpdiv, yourobj.hp);
+                    sysmessage.append(" The enemy countered for " + enemyobj.ctrpower + " damage.");
                     if (yourobj.hp < 1) {
                         gameover = true;
                         sysmessage.text("You have been defeated. GAME OVER. Click here to restart.");
