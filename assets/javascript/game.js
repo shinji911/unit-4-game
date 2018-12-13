@@ -145,6 +145,7 @@ $(document).ready(function () {
                         break;
                 }
                 enemyselect = true;
+                sysmessage.text("Press the attack button to attack.");
             }
 
             else {
