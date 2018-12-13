@@ -13,6 +13,7 @@ $(document).ready(function () {
     let inisvtarray = [];
     let defsvtcount = 0;
     let gameover = false;
+    let yoursvtid = {};
 
 
 
@@ -94,34 +95,35 @@ $(document).ready(function () {
                     case "archerdiv":
                         yourobj = archerobj;
                         yourhpdiv = archerhp;
-                        inisvtarray.splice(0, 1)
+                        inisvtarray.splice(0, 1);
                         movetoDef(inisvtarray);
                         break;
                     case "casterdiv":
                         yourobj = casterobj;
                         yourhpdiv = casterhp;
-                        inisvtarray.splice(1, 1)
+                        inisvtarray.splice(1, 1);
                         movetoDef(inisvtarray);
                         break;
                     case "lancerdiv":
                         yourobj = lancerobj;
                         yourhpdiv = lancerhp;
-                        inisvtarray.splice(2, 1)
+                        inisvtarray.splice(2, 1);
                         movetoDef(inisvtarray);
                         break;
                     case "riderdiv":
                         yourobj = riderobj;
                         yourhpdiv = riderhp;
-                        inisvtarray.splice(3, 1)
+                        inisvtarray.splice(3, 1);
                         movetoDef(inisvtarray);
                         break;
                 }
                 yourselect = true;
-                sysmessage.text("Select Target Enemy")
+                yoursvtid = clickedsvt;
+                sysmessage.text("Select Target Enemy");
             }
 
             //if player has chosen a character and fight enemy is not chosen, run.
-            else if (enemyselect === false) {
+            else if (enemyselect === false && yoursvtid != clickedsvt) {
                 //move chosen enemy to enemysvtzone and set current enemy object.
                 $(this).appendTo(enemysvtzone);
                 switch (clickedsvt) {
@@ -146,7 +148,7 @@ $(document).ready(function () {
             }
 
             else {
-                sysmessage.text("Must Defeat Current Enemy First");
+                sysmessage.text("Cannot choose this target.");
             }
         }
     });
